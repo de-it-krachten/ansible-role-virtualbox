@@ -1,0 +1,8 @@
+---
+
+# Uninstall older versions
+virtualbox_remove_old_versions: false
+
+# VirtualBox extension pack url
+virtbox_extpack: >-
+  http://download.virtualbox.org/virtualbox/{{ virtbox_version_minor }}/Oracle_VM_VirtualBox_Extension_Pack-{{ virtbox_version_minor }}.vbox-extpack
