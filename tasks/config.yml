@@ -1,0 +1,9 @@
+---
+
+- name: Adding users to group vboxusers
+  user:
+    name: "{{ item }}"
+    groups: vboxusers
+    append: yes
+  with_items: "{{ virtbox_users }}"
+  when: virtbox_users is defined and virtbox_users|length > 0

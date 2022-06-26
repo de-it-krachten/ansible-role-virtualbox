@@ -1,0 +1,73 @@
+---
+
+- name: Load variables based on OS type
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "family-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "family-{{ ansible_os_family }}.yml"
+        - default.yml
+      paths:
+        - "vars"
+
+- block:
+
+    - name: Get repo file
+      get_url:
+        url: https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+        dest: /etc/yum.repos.d/virtualbox.repo
+        mode: '0644'
+
+  when: ansible_distribution == 'Fedora'
+
+
+- block:
+
+    - name: Get repo file
+      get_url:
+        url: https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
+        dest: /etc/yum.repos.d/virtualbox.repo
+        mode: '0644'
+
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora'
+
+
+- block:
+
+    - name: Import the hashicorp GPG key
+      apt_key:
+        url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+        state: present
+
+    - name: Configure the APT repository
+      apt_repository:
+        filename: virtualbox
+        repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+        state: present
+
+  when: ansible_os_family == 'Debian'
+
+- name: remove previous Virtualbox versions
+  package:
+    name: "{{ virtualbox_packages_obsolete }}"
+    state: absent
+  when: virtualbox_remove_old_versions|bool
+
+- name: install Virtualbox deb
+  package:
+    name: "{{ virtualbox_packages }}"
+    state: present
+
+- name: Get Virtualbox extension packs installed
+  include: extpack.yml
+
+- name: Adding users to group vboxusers
+  user:
+    name: "{{ item }}"
+    groups: vboxusers
+    append: yes
+  with_items: "{{ virtbox_users }}"
+  when: virtbox_users is defined and virtbox_users|length > 0
