@@ -7,18 +7,10 @@ generic:
   role_description: |
     Installs virtualbox including extension pack
 
-github:
-  fail_fast: false
-
-platforms_add:
-  - name: Fedora 35
-    image: fedora35
-  - name: Fedora 36
-    image: fedora36
-
-molecule:
-  platforms_add:
-    - name: fedora35
-      image: "geerlingguy/docker-fedora35-ansible:latest"
-    - name: fedora36
-      image: "geerlingguy/docker-fedora36-ansible:latest"
+platforms:
+  rhel9:
+    ci: false
+    supported: false
+  almalinux9:
+    ci: false
+    supported: false
