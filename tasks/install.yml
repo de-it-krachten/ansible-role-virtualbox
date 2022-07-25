@@ -40,19 +40,19 @@
     state: present
   when: ansible_os_family == 'Debian'
 
-- name: remove previous Virtualbox versions
+- name: Remove previous Virtualbox versions
   package:
     name: "{{ virtualbox_packages_obsolete }}"
     state: absent
   when: virtualbox_remove_old_versions|bool
 
-- name: install Virtualbox deb
+- name: Install Virtualbox package
   package:
     name: "{{ virtualbox_packages }}"
     state: present
 
 - name: Get Virtualbox extension packs installed
-  include: extpack.yml
+  include_tasks: extpack.yml
 
 - name: Adding users to group vboxusers
   user:
