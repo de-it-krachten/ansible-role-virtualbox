@@ -24,7 +24,8 @@
   check_mode: no
   changed_when: False
 
-- block:
+- name: Install extension pack
+  block:
 
     - name: Download VirtualBox extension pack
       get_url:
