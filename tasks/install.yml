@@ -1,7 +1,7 @@
 ---
 
 - name: Load variables based on OS type
-  include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
@@ -14,48 +14,48 @@
         - "vars"
 
 - name: Get repo file (Fedora)
-  get_url:
+  ansible.builtin.get_url:
     url: https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
     dest: /etc/yum.repos.d/virtualbox.repo
     mode: '0644'
   when: ansible_distribution == 'Fedora'
 
 - name: Get repo file (RedHat-family)
-  get_url:
+  ansible.builtin.get_url:
     url: https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
     dest: /etc/yum.repos.d/virtualbox.repo
     mode: '0644'
   when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora'
 
 - name: Import the hashicorp GPG key (Debian-family)
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
     state: present
   when: ansible_os_family == 'Debian'
 
 - name: Configure the APT repository (Debian-family)
-  apt_repository:
+  ansible.builtin.apt_repository:
     filename: virtualbox
     repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
     state: present
   when: ansible_os_family == 'Debian'
 
 - name: Remove previous Virtualbox versions
-  package:
+  ansible.builtin.package:
     name: "{{ virtualbox_packages_obsolete }}"
     state: absent
   when: virtualbox_remove_old_versions|bool
 
 - name: Install Virtualbox package
-  package:
+  ansible.builtin.package:
     name: "{{ virtualbox_packages }}"
     state: present
 
 - name: Get Virtualbox extension packs installed
-  include_tasks: extpack.yml
+  ansible.builtin.include_tasks: extpack.yml
 
 - name: Adding users to group vboxusers
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     groups: vboxusers
     append: yes

@@ -1,7 +1,7 @@
 ---
 
 - name: Adding users to group vboxusers
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     groups: vboxusers
     append: yes
