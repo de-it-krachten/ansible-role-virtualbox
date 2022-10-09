@@ -6,6 +6,15 @@
 Installs virtualbox including extension pack
 
 
+
+## Dependencies
+
+#### Roles
+None
+
+#### Collections
+- community.general
+
 ## Platforms
 
 Supported platforms
@@ -38,6 +47,7 @@ virtualbox_remove_old_versions: false
 virtbox_extpack: >-
   http://download.virtualbox.org/virtualbox/{{ virtbox_version_minor }}/Oracle_VM_VirtualBox_Extension_Pack-{{ virtbox_version_minor }}.vbox-extpack
 </pre></code>
+
 
 ### vars/Fedora.yml
 <pre><code>
@@ -82,6 +92,6 @@ virtualbox_packages:
   become: "{{ molecule['converge']['become'] | default('yes') }}"
   tasks:
     - name: Include role 'virtualbox'
-      include_role:
+      ansible.builtin.include_role:
         name: virtualbox
 </pre></code>
