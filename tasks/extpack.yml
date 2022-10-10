@@ -1,7 +1,7 @@
 ---
 
 - name: Get current version
-  shell: |
+  ansible.builtin.shell: |
     set -o pipefail
     VBoxManage --version | grep "[0-9\.]r[0-9\.]" | sed "s/r.*//"
   args:
@@ -11,11 +11,11 @@
   check_mode: no
 
 - name: Redefine minor version
-  set_fact:
+  ansible.builtin.set_fact:
     virtbox_version_minor: "{{ vbox_version.stdout }}"
 
 - name: Get Virtualbox extension packs installed
-  shell: |
+  ansible.builtin.shell: |
     set -o pipefail
     VBoxManage list extpacks | awk '/Version:/ {print $2}'
   args:
@@ -25,16 +25,16 @@
   changed_when: False
 
 - name: Install extension pack
+  when: extpack_version.stdout != virtbox_version_minor
   block:
 
     - name: Download VirtualBox extension pack
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ virtbox_extpack }}"
         dest: /tmp/{{ virtbox_extpack | basename }}
-        #validate_certs: False
+        # validate_certs: False
+        mode: "0644"
 
     - name: Install VirtualBox extension pack  # noqa no-changed-when
-      shell: |
+      ansible.builtin.shell: |
         echo 'y' | VBoxManage extpack install --replace /tmp/{{ virtbox_extpack | basename }}
-
-  when: extpack_version.stdout != virtbox_version_minor
