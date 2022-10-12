@@ -1,7 +1,7 @@
 ---
 
 - name: Load variables based on OS type
-  include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
@@ -14,10 +14,10 @@
         - "vars"
 
 - name: Install virtualbox
-  include_tasks: install.yml
+  ansible.builtin.include_tasks: install.yml
 
 - name: Get Virtualbox extension packs installed
-  include_tasks: extpack.yml
+  ansible.builtin.include_tasks: extpack.yml
 
 - name: Perform addional configuration
-  include_tasks: config.yml
+  ansible.builtin.include_tasks: config.yml
