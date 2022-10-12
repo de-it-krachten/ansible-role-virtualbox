@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.1.0...v1.2.0) (2022-10-12)
+
+
+### Features
+
+* Move to FQCN ([ca7bbbe](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/ca7bbbe1b5f6e9412022d91743759e72f4ecf046))
+* Update CI to latest standards ([dc92167](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/dc92167d24fdc6460e6bfba4d9411c82afc560e0))
+
 # [1.1.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.0.0...v1.1.0) (2022-07-28)
 
 
