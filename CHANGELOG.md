@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.2.0...v1.3.0) (2022-10-23)
+
+
+### Features
+
+* Update VirtualBox to 7.0 ([5c2b55a](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/5c2b55a6644ce97219997be788855ca916849987))
+
 # [1.2.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.1.0...v1.2.0) (2022-10-12)
 
 
