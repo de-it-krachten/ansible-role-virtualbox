@@ -3,7 +3,7 @@
 
 # ansible-role-virtualbox
 
-Installs virtualbox including extension pack
+Installs VirtualBox 7.0 including extension pack
 
 
 
@@ -55,9 +55,10 @@ virtualbox_packages_obsolete:
   - VirtualBox-5.0
   - VirtualBox-5.1
   - VirtualBox-6.0
+  - VirtualBox-6.1
 
 virtualbox_packages:
-  - VirtualBox-6.1
+  - VirtualBox-7.0
 </pre></code>
 
 ### vars/family-RedHat.yml
@@ -66,9 +67,10 @@ virtualbox_packages_obsolete:
   - VirtualBox-5.0
   - VirtualBox-5.1
   - VirtualBox-6.0
+  - VirtualBox-6.1
 
 virtualbox_packages:
-  - VirtualBox-6.1
+  - VirtualBox-7.0
 </pre></code>
 
 ### vars/family-Debian.yml
@@ -77,9 +79,10 @@ virtualbox_packages_obsolete:
   - virtualbox-5.0
   - virtualbox-5.1
   - virtualbox-6.0
+  - virtualbox-6.1
 
 virtualbox_packages:
-  - virtualbox-6.1
+  - virtualbox-7.0
 </pre></code>
 
 
@@ -89,7 +92,7 @@ virtualbox_packages:
 <pre><code>
 - name: sample playbook for role 'virtualbox'
   hosts: all
-  become: "{{ molecule['converge']['become'] | default('yes') }}"
+  become: "yes"
   tasks:
     - name: Include role 'virtualbox'
       ansible.builtin.include_role:

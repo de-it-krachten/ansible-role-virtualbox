@@ -5,7 +5,7 @@ generic:
   role: ansible-role-virtualbox
   role_short: virtualbox
   role_description: |
-    Installs virtualbox including extension pack
+    Installs VirtualBox 7.0 including extension pack
 
 platforms:
   rhel9:
