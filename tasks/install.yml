@@ -1,50 +1,63 @@
 ---
 
-- name: Load variables based on OS type
-  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
-  vars:
-    params:
-      files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "family-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-        - "family-{{ ansible_os_family }}.yml"
-        - default.yml
-      paths:
-        - "vars"
+- name: RedHat family
+  when: ansible_os_family == 'RedHat'
+  block:
 
-- name: Get repo file (Fedora)
-  ansible.builtin.get_url:
-    url: https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
-    dest: /etc/yum.repos.d/virtualbox.repo
-    mode: '0644'
-  when: ansible_distribution == 'Fedora'
+    - name: Import the GPG key
+      ansible.builtin.rpm_key:
+        key: https://www.virtualbox.org/download/oracle_vbox.asc
+        state: present
 
-- name: Get repo file (RedHat-family)
-  ansible.builtin.get_url:
-    url: https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
-    dest: /etc/yum.repos.d/virtualbox.repo
-    mode: '0644'
-  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora'
+    - name: Retrieve repo definition
+      ansible.builtin.get_url:
+        url: https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+        dest: /etc/yum.repos.d/virtualbox.repo
+        mode: '0644'
+      when: ansible_distribution == 'Fedora'
 
-- name: Import the hashicorp GPG key (Debian-family)
-  ansible.builtin.apt_key:
-    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-    state: present
+    - name: Change \$releasever in repo file
+      ansible.builtin.replace:
+        path: /etc/yum.repos.d/virtualbox.repo
+        regexp: '\$releasever'
+        replace: "{{ virtualbox_alternative_releasever }}"
+      when:
+        - ansible_distribution == 'Fedora'
+        - virtualbox_alternative_releasever is defined
+
+    - name: Get repo file (RedHat-family)
+      ansible.builtin.get_url:
+        url: https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
+        dest: /etc/yum.repos.d/virtualbox.repo
+        mode: '0644'
+      when: ansible_distribution != 'Fedora'
+
+- name: Debian family
   when: ansible_os_family == 'Debian'
+  block:
 
-- name: Configure the APT repository (Debian-family)
-  ansible.builtin.apt_repository:
-    filename: virtualbox
-    repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
-    state: present
-  when: ansible_os_family == 'Debian'
+    - name: Import the hashicorp GPG key (Debian-family)
+      ansible.builtin.apt_key:
+        url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+        state: present
+
+    - name: Configure the APT repository (Debian-family)
+      ansible.builtin.apt_repository:
+        filename: virtualbox
+        repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+        state: present
+      register: __apt_repository
+
+    - name: Update package list
+      ansible.builtin.apt:
+        update_cache: yes
+      when: __apt_repository.changed
 
 - name: Remove previous Virtualbox versions
   ansible.builtin.package:
     name: "{{ virtualbox_packages_obsolete }}"
     state: absent
-  when: virtualbox_remove_old_versions|bool
+  when: virtualbox_remove_old_versions | bool
 
 - name: Install Virtualbox package
   ansible.builtin.package:
