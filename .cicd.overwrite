@@ -14,3 +14,6 @@ platforms:
   almalinux9:
     ci: false
     supported: false
+  fedora37:
+    ci: false
+    supported: true
