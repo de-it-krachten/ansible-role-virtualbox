@@ -48,7 +48,7 @@
         state: present
       register: __apt_repository
 
-    - name: Update package list
+    - name: Update package list  # noqa no-handler
       ansible.builtin.apt:
         update_cache: yes
       when: __apt_repository.changed
