@@ -50,16 +50,16 @@ virtbox_extpack: >-
 </pre></code>
 
 
-### vars/Fedora.yml
+### vars/family-Debian.yml
 <pre><code>
 virtualbox_packages_obsolete:
-  - VirtualBox-5.0
-  - VirtualBox-5.1
-  - VirtualBox-6.0
-  - VirtualBox-6.1
+  - virtualbox-5.0
+  - virtualbox-5.1
+  - virtualbox-6.0
+  - virtualbox-6.1
 
 virtualbox_packages:
-  - VirtualBox-7.0
+  - virtualbox-7.0
 </pre></code>
 
 ### vars/family-RedHat.yml
@@ -74,16 +74,16 @@ virtualbox_packages:
   - VirtualBox-7.0
 </pre></code>
 
-### vars/family-Debian.yml
+### vars/Fedora.yml
 <pre><code>
 virtualbox_packages_obsolete:
-  - virtualbox-5.0
-  - virtualbox-5.1
-  - virtualbox-6.0
-  - virtualbox-6.1
+  - VirtualBox-5.0
+  - VirtualBox-5.1
+  - VirtualBox-6.0
+  - VirtualBox-6.1
 
 virtualbox_packages:
-  - virtualbox-7.0
+  - VirtualBox-7.0
 </pre></code>
 
 
