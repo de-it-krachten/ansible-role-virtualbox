@@ -25,14 +25,15 @@ Supported platforms
 - RockyLinux 8
 - RockyLinux 9
 - OracleLinux 8
+- OracleLinux 9
 - AlmaLinux 8
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 35
 - Fedora 36
+- Fedora 37<sup>1</sup>
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -49,16 +50,16 @@ virtbox_extpack: >-
 </pre></code>
 
 
-### vars/Fedora.yml
+### vars/family-Debian.yml
 <pre><code>
 virtualbox_packages_obsolete:
-  - VirtualBox-5.0
-  - VirtualBox-5.1
-  - VirtualBox-6.0
-  - VirtualBox-6.1
+  - virtualbox-5.0
+  - virtualbox-5.1
+  - virtualbox-6.0
+  - virtualbox-6.1
 
 virtualbox_packages:
-  - VirtualBox-7.0
+  - virtualbox-7.0
 </pre></code>
 
 ### vars/family-RedHat.yml
@@ -73,16 +74,16 @@ virtualbox_packages:
   - VirtualBox-7.0
 </pre></code>
 
-### vars/family-Debian.yml
+### vars/Fedora.yml
 <pre><code>
 virtualbox_packages_obsolete:
-  - virtualbox-5.0
-  - virtualbox-5.1
-  - virtualbox-6.0
-  - virtualbox-6.1
+  - VirtualBox-5.0
+  - VirtualBox-5.1
+  - VirtualBox-6.0
+  - VirtualBox-6.1
 
 virtualbox_packages:
-  - virtualbox-7.0
+  - VirtualBox-7.0
 </pre></code>
 
 
