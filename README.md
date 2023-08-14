@@ -45,48 +45,48 @@ Note:
 <pre><code>
 # Uninstall older versions
 virtualbox_remove_old_versions: false
-
-# VirtualBox extension pack url
-virtbox_extpack: >-
-  http://download.virtualbox.org/virtualbox/{{ virtbox_version_minor }}/Oracle_VM_VirtualBox_Extension_Pack-{{ virtbox_version_minor }}.vbox-extpack
 </pre></code>
 
-
-### vars/family-Debian.yml
+### defaults/family-Debian.yml
 <pre><code>
+virtualbox_packages:
+  - virtualbox-7.0
+
 virtualbox_packages_obsolete:
   - virtualbox-5.0
   - virtualbox-5.1
   - virtualbox-6.0
   - virtualbox-6.1
-
-virtualbox_packages:
-  - virtualbox-7.0
 </pre></code>
 
-### vars/family-RedHat.yml
+### defaults/family-Suse.yml
 <pre><code>
+# Current virtualbox versions
+virtualbox_packages:
+  - VirtualBox-7.0
+
+# List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
   - VirtualBox-5.0
   - VirtualBox-5.1
   - VirtualBox-6.0
   - VirtualBox-6.1
-
-virtualbox_packages:
-  - VirtualBox-7.0
 </pre></code>
 
-### vars/Fedora.yml
+### defaults/family-RedHat.yml
 <pre><code>
+# Current virtualbox versions
+virtualbox_packages:
+  - VirtualBox-7.0
+
+# List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
   - VirtualBox-5.0
   - VirtualBox-5.1
   - VirtualBox-6.0
   - VirtualBox-6.1
-
-virtualbox_packages:
-  - VirtualBox-7.0
 </pre></code>
+
 
 
 
