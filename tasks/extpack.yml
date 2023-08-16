@@ -13,6 +13,8 @@
 - name: Redefine minor version
   ansible.builtin.set_fact:
     virtbox_version_minor: "{{ vbox_version.stdout }}"
+    virtbox_extpack: >-
+      http://download.virtualbox.org/virtualbox/{{ vbox_version.stdout }}/Oracle_VM_VirtualBox_Extension_Pack-{{ vbox_version.stdout }}.vbox-extpack
 
 - name: Get Virtualbox extension packs installed
   ansible.builtin.shell: |

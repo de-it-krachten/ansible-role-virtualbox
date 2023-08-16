@@ -1,5 +1,24 @@
 ---
 
+- name: Suse family
+  when: ansible_os_family == 'Suse'
+  block:
+
+    - name: Import the GPG key
+      ansible.builtin.rpm_key:
+        key: https://www.virtualbox.org/download/oracle_vbox.asc
+        state: present
+
+    - name: Retrieve repo definition
+      ansible.builtin.get_url:
+        url: https://download.virtualbox.org/virtualbox/rpm/opensuse/virtualbox.repo
+        dest: /etc/zypp/repos.d/virtualbox.repo
+        mode: '0644'
+
+    - name: Refresh zypper
+      ansible.builtin.command: zypper --gpg-auto-import-keys refresh
+      changed_when: false
+
 - name: RedHat family
   when: ansible_os_family == 'RedHat'
   block:
