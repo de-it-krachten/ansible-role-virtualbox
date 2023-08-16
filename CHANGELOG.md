@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.3.1...v1.4.0) (2023-08-16)
+
+
+### Bug Fixes
+
+* Fix support for (Open)SUSE ([0a0e012](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/0a0e0124d6dd577e3be068186268f17f3333437f))
+
+
+### Features
+
+* Update supported platforms & CI ([de9c314](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/de9c314cf638405ea488ec09544e0914800fa3ef))
+
 ## [1.3.1](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.3.0...v1.3.1) (2023-05-06)
 
 
