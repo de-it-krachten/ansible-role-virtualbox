@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.4.0...v1.4.1) (2023-09-22)
+
+
+### Bug Fixes
+
+* Fix loop label to string ([af1d24d](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/af1d24d3d6ed4669bf66c84a76fee6d55422fff8))
+
 # [1.4.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.3.1...v1.4.0) (2023-08-16)
 
 
