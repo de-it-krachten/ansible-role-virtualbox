@@ -13,7 +13,7 @@ Installs VirtualBox 7.0 including extension pack
 None
 
 #### Collections
-- community.general
+None
 
 ## Platforms
 
@@ -27,13 +27,13 @@ Supported platforms
 - OracleLinux 8
 - OracleLinux 9
 - AlmaLinux 8
-- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 37<sup>1</sup>
-- Fedora 38<sup>1</sup>
+- Ubuntu 24.04 LTS
+- Fedora 39<sup>1</sup>
+- Fedora 40<sup>1</sup>
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -57,7 +57,7 @@ virtualbox_packages_obsolete:
   - virtualbox-6.1
 </pre></code>
 
-### defaults/family-Suse.yml
+### defaults/family-RedHat.yml
 <pre><code>
 # Current virtualbox versions
 virtualbox_packages:
@@ -71,7 +71,7 @@ virtualbox_packages_obsolete:
   - VirtualBox-6.1
 </pre></code>
 
-### defaults/family-RedHat.yml
+### defaults/family-Suse.yml
 <pre><code>
 # Current virtualbox versions
 virtualbox_packages:
@@ -93,7 +93,7 @@ virtualbox_packages_obsolete:
 <pre><code>
 - name: sample playbook for role 'virtualbox'
   hosts: all
-  become: "yes"
+  become: 'yes'
   tasks:
     - name: Include role 'virtualbox'
       ansible.builtin.include_role:
