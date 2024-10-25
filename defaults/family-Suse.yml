@@ -2,7 +2,7 @@
 
 # Current virtualbox versions
 virtualbox_packages:
-  - VirtualBox-7.0
+  - VirtualBox-7.1
 
 # List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
@@ -10,3 +10,4 @@ virtualbox_packages_obsolete:
   - VirtualBox-5.1
   - VirtualBox-6.0
   - VirtualBox-6.1
+  - VirtualBox-7.0
