@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.5.0...v1.6.0) (2024-11-04)
+
+
+### Features
+
+* Default changed from version 7.0 to 7.1 ([88dba8f](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/88dba8f0596fc70ab65779e0745d487a1a88295f))
+
 # [1.5.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.4.1...v1.5.0) (2024-06-03)
 
 
