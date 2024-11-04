@@ -10,11 +10,15 @@
   changed_when: no
   check_mode: no
 
-- name: Redefine minor version
+- name: Redefine minor version  # noqa jinja[spacing]
   ansible.builtin.set_fact:
     virtbox_version_minor: "{{ vbox_version.stdout }}"
     virtbox_extpack: >-
-      http://download.virtualbox.org/virtualbox/{{ vbox_version.stdout }}/Oracle_VM_VirtualBox_Extension_Pack-{{ vbox_version.stdout }}.vbox-extpack
+      {%- if vbox_version.stdout is version_compare('7.1', '>=') -%}
+      https://download.virtualbox.org/virtualbox/{{ vbox_version.stdout }}/Oracle_VirtualBox_Extension_Pack-{{ vbox_version.stdout }}.vbox-extpack
+      {%- else -%}
+      https://download.virtualbox.org/virtualbox/{{ vbox_version.stdout }}/Oracle_VM_VirtualBox_Extension_Pack-{{ vbox_version.stdout }}.vbox-extpack
+      {%- endif -%}
 
 - name: Get Virtualbox extension packs installed
   ansible.builtin.shell: |

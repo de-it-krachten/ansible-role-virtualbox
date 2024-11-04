@@ -19,9 +19,7 @@ None
 
 Supported platforms
 
-- Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
-- CentOS 7
 - RockyLinux 8
 - RockyLinux 9
 - OracleLinux 8
@@ -48,20 +46,21 @@ virtualbox_remove_old_versions: false
 ### defaults/family-Debian.yml
 <pre><code>
 virtualbox_packages:
-  - virtualbox-7.0
+  - virtualbox-7.1
 
 virtualbox_packages_obsolete:
   - virtualbox-5.0
   - virtualbox-5.1
   - virtualbox-6.0
   - virtualbox-6.1
+  - virtualbox-7.0
 </pre></code>
 
 ### defaults/family-RedHat.yml
 <pre><code>
 # Current virtualbox versions
 virtualbox_packages:
-  - VirtualBox-7.0
+  - VirtualBox-7.1
 
 # List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
@@ -69,13 +68,14 @@ virtualbox_packages_obsolete:
   - VirtualBox-5.1
   - VirtualBox-6.0
   - VirtualBox-6.1
+  - VirtualBox-7.0
 </pre></code>
 
 ### defaults/family-Suse.yml
 <pre><code>
 # Current virtualbox versions
 virtualbox_packages:
-  - VirtualBox-7.0
+  - VirtualBox-7.1
 
 # List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
@@ -83,6 +83,7 @@ virtualbox_packages_obsolete:
   - VirtualBox-5.1
   - VirtualBox-6.0
   - VirtualBox-6.1
+  - VirtualBox-7.0
 </pre></code>
 
 
