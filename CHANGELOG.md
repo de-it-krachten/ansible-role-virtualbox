@@ -1,3 +1,14 @@
+# [1.7.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.6.0...v1.7.0) (2025-08-11)
+
+
+### Features
+
+* Add support for AlmaLinux 10 ([0967e07](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/0967e0742313bd9a10d60193aea41052cc95f8e7))
+* Add support for OracleLinux 10 ([43b7d12](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/43b7d12b8c1fd08d416a0c827ee1f0b8f1526e63))
+* Add support for Red Hat Enterprise Linux 10 ([cc4ab4c](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/cc4ab4cb31209d6d370ad0a9b8d6aa5b15539aca))
+* Add support for RockyLinux 10 ([b374222](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/b37422235e76c68a8df929712e374de8835bc543))
+* Update supported platforms & CI ([1405df8](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/1405df86ff74f83638ce72fb226904e535cb489e))
+
 # [1.6.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.5.0...v1.6.0) (2024-11-04)
 
 
