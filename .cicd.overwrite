@@ -8,21 +8,54 @@ generic:
     Installs VirtualBox 7.0 including extension pack
 
 platforms:
-  rhel9:
+#  rhel8:
+#    ci: false
+#    supported: false
+#  rhel9:
+#    ci: false
+#    supported: false
+#  rhel10:
+#    ci: false
+#    supported: false
+#  rockylinux8:
+#    ci: false
+#    supported: false
+#  rockylinux9:
+#    ci: false
+#    supported: false
+#  rockylinux10:
+#    ci: false
+#    supported: false
+#  almalinux8:
+#    ci: false
+#    supported: false
+#  almalinux9:
+#    ci: false
+#    supported: false
+#  almalinux10:
+#    ci: false
+#    supported: false
+#  oraclelinux8:
+#    ci: false
+#    supported: false
+#  oraclelinux9:
+#    ci: false
+#    supported: false
+#  oraclelinux10:
+#    ci: false
+#    supported: false
+#  opensuse15:
+#    ci: false
+#    supported: false
+#  sles15:
+#    ci: false
+#    supported: false
+  debian13:
     ci: false
     supported: false
-  almalinux9:
-    ci: false
-    supported: false
-  opensuse15:
-    ci: false
-    supported: false
-  sles15:
-    ci: false
-    supported: false
-  fedora39:
-    ci: false
-    supported: true
-  fedora40:
-    ci: false
-    supported: true
+#  fedora41:
+#    ci: false
+#    supported: true
+#  fedora42:
+#    ci: false
+#    supported: true

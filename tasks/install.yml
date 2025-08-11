@@ -23,9 +23,16 @@
   when: ansible_os_family == 'RedHat'
   block:
 
+    - name: Download GPG signing key
+      ansible.builtin.get_url:
+        url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+        dest: /tmp/oracle-virtualbox-2016.asc
+        mode: "0644"
+      changed_when: false
+
     - name: Import the GPG key
       ansible.builtin.rpm_key:
-        key: https://www.virtualbox.org/download/oracle_vbox.asc
+        key: /tmp/oracle-virtualbox-2016.asc
         state: present
 
     - name: Retrieve repo definition
@@ -55,16 +62,60 @@
   when: ansible_os_family == 'Debian'
   block:
 
-    - name: Import the hashicorp GPG key (Debian-family)
-      ansible.builtin.apt_key:
+    - name: Download APT signing key
+      ansible.builtin.get_url:
         url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-        state: present
+        dest: /tmp/oracle-virtualbox-2016.asc
+        mode: "0644"
+      changed_when: false
 
-    - name: Configure the APT repository (Debian-family)
+    - name: Convert APT key into binary format
+      ansible.builtin.command:
+        cmd: >-
+          gpg
+          --batch
+          --yes
+          --no-tty
+          --dearmor
+          -o /tmp/oracle-virtualbox-2016.gpg
+          /tmp/oracle-virtualbox-2016.asc
+      changed_when: false
+
+    - name: Import Microsoft GPG key
+      ansible.builtin.apt_key:
+        state: present
+        file: /tmp/oracle-virtualbox-2016.gpg
+        keyring: /etc/apt/trusted.gpg.d/oracle-virtualbox-2016.gpg
+      become: yes
+      when: ansible_distribution_major_version | int < 12
+
+    - name: Copy APT signing key into the proper drop-in directory
+      ansible.builtin.copy:
+        src: /tmp/oracle-virtualbox-2016.gpg
+        dest: /etc/apt/trusted.gpg.d/oracle-virtualbox-2016.gpg
+        remote_src: yes
+        mode: "0644"
+      when: ansible_distribution_major_version | int >= 12
+
+    - name: Setup Microsoft APT repository  # noqa jinja[spacing]
       ansible.builtin.apt_repository:
         filename: virtualbox
-        repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+        repo: >-
+          {%- if ansible_distribution_major_version | int < 12 -%}
+          deb
+          [arch=amd64,arm64]
+          https://download.virtualbox.org/virtualbox/debian
+          {{ ansible_distribution_release }}
+          contrib
+          {%- else -%}
+          deb
+          [arch=amd64,arm64 signed-by=/etc/apt/trusted.gpg.d/oracle-virtualbox-2016.gpg]
+          https://download.virtualbox.org/virtualbox/debian
+          {{ ansible_distribution_release }}
+          contrib
+          {%- endif -%}
         state: present
+      become: yes
       register: __apt_repository
 
     - name: Update package list  # noqa no-handler
