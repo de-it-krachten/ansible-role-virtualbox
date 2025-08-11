@@ -23,9 +23,16 @@
   when: ansible_os_family == 'RedHat'
   block:
 
+    - name: Download GPG signing key
+      ansible.builtin.get_url:
+        url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+        dest: /tmp/oracle-virtualbox-2016.asc
+        mode: "0644"
+      changed_when: false
+
     - name: Import the GPG key
       ansible.builtin.rpm_key:
-        key: https://www.virtualbox.org/download/oracle_vbox.asc
+        key: /tmp/oracle-virtualbox-2016.asc
         state: present
 
     - name: Retrieve repo definition
