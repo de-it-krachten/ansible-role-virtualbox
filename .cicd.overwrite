@@ -59,3 +59,8 @@ platforms:
 #  fedora42:
 #    ci: false
 #    supported: true
+
+molecule:
+  converge:
+    vars:
+      virtualbox_disble_gpg_check: true

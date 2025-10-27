@@ -3,6 +3,9 @@
 - name: Converge
   hosts: all
   become: "yes"
+  vars:
+    molecule_driver: "{{ lookup('env', 'MOLECULE_DRIVER_NAME') }}"
+    virtualbox_disble_gpg_check: True
   tasks:
     - name: Include role 'ansible-role-virtualbox'
       ansible.builtin.include_role:
