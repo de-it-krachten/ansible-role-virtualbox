@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.7.0...v1.7.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* Add support for disabling GPG during package install (RedHat-family) ([5acced4](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/5acced4b5467f0bc58fe374bb6c9b4f01f325c03))
+
 # [1.7.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.6.0...v1.7.0) (2025-08-11)
 
 
