@@ -52,22 +52,28 @@ virtualbox_remove_old_versions: false
 
 ### defaults/family-Debian.yml
 <pre><code>
+# Current virtualbox versions
 virtualbox_packages:
-  - virtualbox-7.1
+  - virtualbox-7.2
 
+# List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
   - virtualbox-5.0
   - virtualbox-5.1
   - virtualbox-6.0
   - virtualbox-6.1
   - virtualbox-7.0
+  - virtualbox-7.1
 </pre></code>
 
 ### defaults/family-RedHat.yml
 <pre><code>
+# Disable the check for GPG signed packages
+virtualbox_disble_gpg_check: false
+
 # Current virtualbox versions
 virtualbox_packages:
-  - VirtualBox-7.1
+  - VirtualBox-7.2
 
 # List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
@@ -76,13 +82,14 @@ virtualbox_packages_obsolete:
   - VirtualBox-6.0
   - VirtualBox-6.1
   - VirtualBox-7.0
+  - VirtualBox-7.1
 </pre></code>
 
 ### defaults/family-Suse.yml
 <pre><code>
 # Current virtualbox versions
 virtualbox_packages:
-  - VirtualBox-7.1
+  - VirtualBox-7.2
 
 # List of obsolete virtualbox versions
 virtualbox_packages_obsolete:
@@ -91,6 +98,7 @@ virtualbox_packages_obsolete:
   - VirtualBox-6.0
   - VirtualBox-6.1
   - VirtualBox-7.0
+  - VirtualBox-7.1
 </pre></code>
 
 
@@ -102,6 +110,9 @@ virtualbox_packages_obsolete:
 - name: sample playbook for role 'virtualbox'
   hosts: all
   become: 'yes'
+  vars:
+    molecule_driver: '{{ lookup(''env'', ''MOLECULE_DRIVER_NAME'') }}'
+    virtualbox_disble_gpg_check: true
   tasks:
     - name: Include role 'virtualbox'
       ansible.builtin.include_role:

@@ -58,6 +58,14 @@
         mode: '0644'
       when: ansible_distribution != 'Fedora'
 
+    - name: Disable GPG check
+      ansible.builtin.replace:
+        path: /etc/yum.repos.d/virtualbox.repo
+        regexp: 'gpgcheck=1'
+        replace: 'gpgcheck=0'
+      when: virtualbox_disble_gpg_check | bool
+
+
 - name: Debian family
   when: ansible_os_family == 'Debian'
   block:
