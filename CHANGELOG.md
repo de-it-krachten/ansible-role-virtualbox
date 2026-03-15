@@ -1,3 +1,13 @@
+# [1.8.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.7.1...v1.8.0) (2026-03-15)
+
+
+### Features
+
+* Added support for Fedora 43 ([995141a](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/995141a20bd82d23b4762a2a1b6644ef61d4d8c5))
+* Drop support for Fedora 41 ([e0a5fdd](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/e0a5fddead64192bbc9e2ab677dcc29c9838fd6e))
+* Drop support for openSUSE Leap 15 ([d99c825](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/d99c82564e4ddfbe6cc3a059826b027e27f0ef48))
+* Drop support for SUSE Linux Enterprise 15 ([b74f141](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/b74f1412da378a4d7e4760164b7294113f5dde72))
+
 ## [1.7.1](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.7.0...v1.7.1) (2025-10-30)
 
 
