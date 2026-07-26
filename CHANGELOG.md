@@ -1,3 +1,18 @@
+# [1.9.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.8.0...v1.9.0) (2026-07-26)
+
+
+### Bug Fixes
+
+* Standarize vars.yml ([2b3bfe8](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/2b3bfe8186776d2052b01c05dfb3bb13d42f3eb8))
+
+
+### Features
+
+* Add support for ansible-core 2.20+ ([b8ca218](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/b8ca218742ba4300b80c3c83d9877fe2ccf69c57))
+* Added support for Fedora 44 ([9dfeec5](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/9dfeec59c731ab43d753f9cad7b5341555ba7079))
+* Added support for Ubuntu 26.04 LTS ([da18c0b](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/da18c0b1a8aff9b19244a140cac3ee0b72d4b245))
+* Drop support for Fedora 42 ([1c2592d](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/1c2592dbb37bfda4ed6a27e9f26fe4fbe0189fab))
+
 # [1.8.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.7.1...v1.8.0) (2026-03-15)
 
 
