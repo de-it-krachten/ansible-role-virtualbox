@@ -1,7 +1,7 @@
 ---
 
 - name: Suse family
-  when: ansible_os_family == 'Suse'
+  when: ansible_facts.os_family == 'Suse'
   block:
 
     - name: Import the GPG key
@@ -20,7 +20,7 @@
       changed_when: false
 
 - name: RedHat family
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts.os_family == 'RedHat'
   block:
 
     - name: Download GPG signing key
@@ -40,7 +40,7 @@
         url: https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
         dest: /etc/yum.repos.d/virtualbox.repo
         mode: '0644'
-      when: ansible_distribution == 'Fedora'
+      when: ansible_facts.distribution == 'Fedora'
 
     - name: Change \$releasever in repo file
       ansible.builtin.replace:
@@ -48,7 +48,7 @@
         regexp: '\$releasever'
         replace: "{{ virtualbox_alternative_releasever }}"
       when:
-        - ansible_distribution == 'Fedora'
+        - ansible_facts.distribution == 'Fedora'
         - virtualbox_alternative_releasever is defined
 
     - name: Get repo file (RedHat-family)
@@ -56,7 +56,7 @@
         url: https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
         dest: /etc/yum.repos.d/virtualbox.repo
         mode: '0644'
-      when: ansible_distribution != 'Fedora'
+      when: ansible_facts.distribution != 'Fedora'
 
     - name: Disable GPG check
       ansible.builtin.replace:
@@ -67,7 +67,7 @@
 
 
 - name: Debian family
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts.os_family == 'Debian'
   block:
 
     - name: Download APT signing key
@@ -95,7 +95,7 @@
         file: /tmp/oracle-virtualbox-2016.gpg
         keyring: /etc/apt/trusted.gpg.d/oracle-virtualbox-2016.gpg
       become: yes
-      when: ansible_distribution_major_version | int < 12
+      when: ansible_facts.distribution_major_version | int < 12
 
     - name: Copy APT signing key into the proper drop-in directory
       ansible.builtin.copy:
@@ -103,23 +103,23 @@
         dest: /etc/apt/trusted.gpg.d/oracle-virtualbox-2016.gpg
         remote_src: yes
         mode: "0644"
-      when: ansible_distribution_major_version | int >= 12
+      when: ansible_facts.distribution_major_version | int >= 12
 
     - name: Setup Microsoft APT repository  # noqa jinja[spacing]
       ansible.builtin.apt_repository:
         filename: virtualbox
         repo: >-
-          {%- if ansible_distribution_major_version | int < 12 -%}
+          {%- if ansible_facts.distribution_major_version | int < 12 -%}
           deb
           [arch=amd64,arm64]
           https://download.virtualbox.org/virtualbox/debian
-          {{ ansible_distribution_release }}
+          {{ ansible_facts.distribution_release }}
           contrib
           {%- else -%}
           deb
           [arch=amd64,arm64 signed-by=/etc/apt/trusted.gpg.d/oracle-virtualbox-2016.gpg]
           https://download.virtualbox.org/virtualbox/debian
-          {{ ansible_distribution_release }}
+          {{ ansible_facts.distribution_release }}
           contrib
           {%- endif -%}
         state: present
