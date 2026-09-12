@@ -89,7 +89,7 @@
           /tmp/oracle-virtualbox-2016.asc
       changed_when: false
 
-    - name: Import Microsoft GPG key
+    - name: Import Virtualbox GPG key
       ansible.builtin.apt_key:
         state: present
         file: /tmp/oracle-virtualbox-2016.gpg
@@ -105,7 +105,7 @@
         mode: "0644"
       when: ansible_facts.distribution_major_version | int >= 12
 
-    - name: Setup Microsoft APT repository  # noqa jinja[spacing]
+    - name: Setup Virtualbox APT repository  # noqa jinja[spacing]
       ansible.builtin.apt_repository:
         filename: virtualbox
         repo: >-
