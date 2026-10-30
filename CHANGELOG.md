@@ -1,3 +1,15 @@
+# [1.10.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.9.0...v1.10.0) (2026-10-30)
+
+
+### Bug Fixes
+
+* Fixed typo's (Microsoft => Virtualbox) ([d4cca6e](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/d4cca6eafc500943ec4714eadee94734fe5b8e48))
+
+
+### Features
+
+* Drop support for Debian 11 (Bullseye) ([a5198a1](https://github.com/de-it-krachten/ansible-role-virtualbox/commit/a5198a176b8175b2063cbf4115ab7a786b3b813f))
+
 # [1.9.0](https://github.com/de-it-krachten/ansible-role-virtualbox/compare/v1.8.0...v1.9.0) (2026-07-26)
 
 
